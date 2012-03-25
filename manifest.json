@@ -1,0 +1,21 @@
+{
+  "name": "易社",
+  "version": "0.0.1",
+  "description": "ECSEL extension",
+  "browser_action": {
+      "default_icon": "icon.png",
+      "popup": "popup.html"
+    },
+  "content_scripts": [
+    {
+      "matches": ["http://io.ecselfellows.org/socket.io/*"],
+      "css": ["bootstrap.css", "screen.css"],
+      "js": ["jquery.js"]
+    }
+  ],
+  "permissions": [
+      "notifications", "tabs", "http://twitter.com/*", 
+      "http://weibo.com/*", "http://www.ecselfellows.org/*"
+    ],
+  "background_page": "bg.html"
+}

@@ -1,0 +1,42 @@
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="json2.js"></script>
+<script type="text/javascript" src="http://io.transi.st/socket.io/socket.io.js"></script>
+
+<script type="text/javascript">
+  var session = null;
+  if(localStorage.session)
+  {
+    session = JSON.parse(localStorage.session);
+  }
+
+  var socket = io.connect('http://io.transi.st', {port: 80});
+  var last_event;
+
+  socket.on('new_timeline_event', function(data) {
+    // data = JSON.parse(data)
+    // if (last_event != data.id) {
+    //   var notification = webkitNotifications.createNotification(
+    //     data.profile_image_url,  // icon url - can be relative
+    //     data.username,  // notification title
+    //     data.content.text  // notification body text
+    //   );
+    //   notification.show();
+    //   last_event = data.id;
+    // }
+  });
+
+  socket.on('mention', function(data) {
+    // data = JSON.parse(data)
+    // var notification = webkitNotifications.createNotification(
+    //   icon.png,  // icon url - can be relative
+    //   'Mentions',  // notification title
+    //   "1 new mention"  // notification body text
+    // );
+    // notification.show();
+  });
+
+
+  socket.emit('join_room', '/users/9/mentions');
+  socket.emit('join_room', "/users/9/home_timeline");
+  socket.emit('join_room', '/global_stats');
+</script>
